@@ -1,0 +1,707 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="제대로 하는 영상 파트너, DOTMOV. 공공기관·지자체·기업 영상 350편 이상 제작. 기획부터 납품까지 한 팀이 맡습니다.">
+<meta property="og:title" content="DOTMOV 회사 소개">
+<meta property="og:description" content="제대로 하는 영상 파트너, DOTMOV. 기획부터 납품까지 담당이 바뀌지 않습니다.">
+<meta property="og:image" content="img/grading.jpg">
+<meta property="og:type" content="website">
+<title>DOTMOV 회사 소개</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;700;800;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@300;400;500;600&display=swap">
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<style>
+/* Layout: 블랙 타이틀 카드로 열고 닫고, 그 사이는 종이 지면. 좌측 좁은 라벨 칼럼 + 우측 넓은 본문 칼럼의 콜시트 구조. 색은 사진이 맡는다. */
+:root {
+  --paper: #f6f6f3;
+  --ink: #101012;
+  --mute: #6a6a70;
+  --rule: #d5d5d0;
+  --accent: #2b3bff;
+  --slate: #0a0a0a;
+  --slate-ink: #ffffff;
+  --slate-mute: #8d8d93;
+  --slate-rule: #2c2c30;
+  --sheet: #ffffff;
+  --sheet-ink: #5c5c62;
+  --scrim: rgba(0, 0, 0, 0.9);
+  --display: "Gothic A1", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --gutter: clamp(20px, 5vw, 72px);
+  --label: 190px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #131315; --ink: #f1f1ee; --mute: #9a9aa1; --rule: #303034; --accent: #98a1ff;
+    --slate: #000000; --slate-rule: #26262a;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #131315; --ink: #f1f1ee; --mute: #9a9aa1; --rule: #303034; --accent: #98a1ff;
+  --slate: #000000; --slate-rule: #26262a;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper); color: var(--ink);
+  font-family: var(--body); font-size: 17px; line-height: 1.75; font-weight: 400;
+  word-break: keep-all; overflow-wrap: anywhere;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4, p, ul, ol, dl, dd, figure { margin: 0; }
+ul, ol { padding: 0; list-style: none; }
+img { display: block; height: auto; }
+a { color: inherit; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.wrap { max-width: 1240px; margin-inline: auto; padding-inline: var(--gutter); }
+.mono { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* ── 타이틀 카드 ───────────────────────── */
+.slate { background: var(--slate); color: var(--slate-ink); }
+.hero { position: relative; }
+.hero-bar {
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 28px;
+  padding-block: 22px; color: var(--slate-mute);
+}
+.hero-bar nav { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 14px; }
+.hero-bar a { text-decoration: none; }
+.hero-bar a:hover { color: var(--slate-ink); }
+.tc { font-variant-numeric: tabular-nums; }
+.tc::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #ff3b30; margin-right: 9px; vertical-align: 1px; }
+.hero-stage {
+  position: relative; display: grid; place-items: center; text-align: center;
+  min-height: min(68vh, 620px); padding-block: 72px;
+}
+.hero-stage::before, .hero-stage::after {
+  content: ""; position: absolute; width: 26px; height: 26px; border: 1px solid var(--slate-mute); opacity: .7;
+}
+.hero-stage::before { top: 18px; left: 0; border-right: 0; border-bottom: 0; }
+.hero-stage::after { bottom: 18px; right: 0; border-left: 0; border-top: 0; }
+.hero h1 { display: grid; gap: clamp(18px, 3vw, 30px); justify-items: center; }
+.hero h1 span { font-family: var(--display); font-weight: 700; font-size: clamp(20px, 2.6vw, 30px); letter-spacing: -0.01em; }
+.hero h1 img { width: min(440px, 72vw); }
+.hero-foot {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 26px;
+  padding-block: 0 34px; color: var(--slate-mute); font-size: 14px;
+}
+
+/* ── 지면 공통 ───────────────────────── */
+.section { padding-block: clamp(64px, 9vw, 128px); }
+.section + .section { border-top: 1px solid var(--rule); }
+.cols { display: grid; grid-template-columns: var(--label) minmax(0, 1fr); gap: 20px clamp(24px, 5vw, 72px); }
+.eyebrow { color: var(--mute); padding-top: 10px; }
+.headline {
+  font-family: var(--display); font-weight: 800; letter-spacing: -0.035em; line-height: 1.18;
+  font-size: clamp(32px, 5.2vw, 64px); text-wrap: balance;
+}
+.lede { max-width: 34em; margin-top: clamp(24px, 3vw, 36px); display: grid; gap: 1em; font-size: clamp(17px, 1.5vw, 19px); }
+.lede strong { font-weight: 600; }
+
+/* 숫자 */
+.figures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px clamp(20px, 4vw, 56px); margin-top: clamp(48px, 7vw, 88px); }
+.figures dt {
+  font-family: var(--display); font-weight: 900; letter-spacing: -0.05em; line-height: 0.95;
+  font-size: clamp(54px, 10vw, 132px); font-variant-numeric: tabular-nums;
+}
+.figures dt small { font-size: 0.42em; font-weight: 800; letter-spacing: -0.02em; margin-left: 0.08em; }
+.figures dd { margin-top: 14px; border-top: 1px solid var(--ink); padding-top: 12px; font-size: 15px; line-height: 1.55; }
+.figures dd span { display: block; color: var(--mute); font-size: 13.5px; }
+
+/* 합류 범위 */
+.modes { margin-top: clamp(48px, 6vw, 80px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px clamp(20px, 4vw, 56px); }
+.modes h3 { font-family: var(--display); font-weight: 800; font-size: 21px; letter-spacing: -0.02em; }
+.modes p { color: var(--mute); font-size: 15.5px; line-height: 1.6; margin-top: 6px; }
+.subhead { font-family: var(--display); font-weight: 800; font-size: clamp(22px, 2.4vw, 28px); letter-spacing: -0.025em; line-height: 1.3; }
+
+/* ── 작업 ───────────────────────── */
+.work-group { margin-top: clamp(48px, 7vw, 96px); }
+.work-group > header { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 24px; border-bottom: 2px solid var(--ink); padding-bottom: 12px; }
+.work-group > header h3 { font-family: var(--display); font-weight: 800; font-size: clamp(24px, 3vw, 36px); letter-spacing: -0.03em; }
+.work-group > header span { color: var(--mute); }
+.project {
+  display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 18px clamp(24px, 4vw, 56px);
+  padding-block: clamp(24px, 3.4vw, 44px); border-bottom: 1px solid var(--rule); align-items: start;
+}
+.project h4 { font-family: var(--display); font-weight: 800; font-size: clamp(20px, 2vw, 25px); letter-spacing: -0.025em; line-height: 1.3; text-wrap: balance; }
+.project .kind { margin-top: 10px; font-size: 15.5px; }
+.project .role { color: var(--mute); font-size: 14.5px; }
+.frames { display: flex; gap: 8px; min-width: 0; }
+.frames img { flex: var(--r) 1 0; min-width: 0; width: 0; background: var(--rule); }
+.frame-rows { display: grid; gap: 8px; min-width: 0; }
+.project.is-stack { grid-template-columns: minmax(0, 1fr); row-gap: 16px; }
+.project.is-stack .project-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 20px; }
+.project.is-stack .kind { margin-top: 0; }
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 clamp(24px, 4vw, 56px); border-bottom: 1px solid var(--rule); }
+.pair .project { border-bottom: 0; }
+.pair .project-meta { display: block; }
+.pair .kind { margin-top: 8px; }
+.frames img { cursor: zoom-in; }
+.band { margin-bottom: clamp(56px, 8vw, 112px); }
+.band figcaption { margin-top: 12px; color: var(--mute); font-size: 14px; }
+#lightbox { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 94vh; overflow: visible; }
+#lightbox::backdrop { background: var(--scrim); }
+#lightbox img { display: block; max-width: 96vw; max-height: 94vh; width: auto; height: auto; cursor: zoom-out; }
+.project.is-feature { grid-template-columns: minmax(0, 1fr); row-gap: 22px; padding-block: clamp(32px, 4.4vw, 60px); }
+.project.is-feature h4 { font-size: clamp(30px, 4.4vw, 54px); letter-spacing: -0.035em; line-height: 1.15; }
+.project.is-feature .kind { font-size: clamp(17px, 1.6vw, 20px); margin-top: 14px; }
+.project.is-feature .role { font-size: 15.5px; }
+.project .tag { color: var(--accent); margin-bottom: 10px; }
+.others { padding-top: 22px; display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: 6px clamp(24px, 4vw, 56px); }
+.others dt { color: var(--mute); }
+.others dd { font-size: 15.5px; line-height: 1.8; }
+
+/* ── 표 형태 목록 ───────────────────────── */
+.ledger { margin-top: clamp(36px, 5vw, 64px); border-top: 2px solid var(--ink); }
+.ledger { display: grid; grid-template-columns: max-content minmax(0, 4fr) minmax(0, 5fr); column-gap: clamp(20px, 3.4vw, 48px); }
+.ledger.terms { grid-template-columns: max-content max-content minmax(0, 1fr); }
+.ledger li {
+  display: grid; grid-template-columns: subgrid; grid-column: 1 / -1; row-gap: 4px;
+  padding-block: 20px; border-bottom: 1px solid var(--rule); align-items: baseline;
+}
+.ledger b { font-family: var(--display); font-weight: 800; font-size: clamp(20px, 2.1vw, 26px); letter-spacing: -0.025em; }
+.ledger span { font-size: 16px; }
+.ledger em { font-style: normal; color: var(--mute); font-size: 14.5px; }
+.ledger .term { color: var(--accent); }
+.closing { margin-top: clamp(28px, 4vw, 44px); font-family: var(--display); font-weight: 700; font-size: clamp(19px, 2vw, 24px); letter-spacing: -0.02em; text-wrap: balance; }
+
+/* ── AI ───────────────────────── */
+.ai-strip { margin-top: clamp(36px, 5vw, 60px); max-width: 880px; }
+.ai-reel { margin-top: clamp(56px, 8vw, 104px); }
+.ai-reel .frames-v { margin-top: 22px; max-width: 760px; }
+@media (max-width: 560px) { .ai-reel .frames-v img { flex: 1 1 30%; width: 30%; } }
+.ai-strip figcaption { margin-top: 12px; color: var(--mute); font-size: 14px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px 10px; margin-top: 26px; }
+.chips li { border: 1px solid var(--ink); padding: 5px 13px; font-family: var(--mono); font-size: 13px; letter-spacing: 0.02em; }
+
+/* ── 스펙 ───────────────────────── */
+.spec { margin-top: clamp(36px, 5vw, 64px); border-top: 2px solid var(--ink); }
+.spec div { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 9fr); gap: 4px clamp(16px, 3vw, 40px); padding-block: 18px; border-bottom: 1px solid var(--rule); align-items: baseline; }
+.spec dt { color: var(--mute); }
+.spec dd { font-size: 16.5px; }
+.spec dd small { display: block; color: var(--mute); font-size: 14.5px; }
+
+/* ── 클라이언트 ───────────────────────── */
+.sheet { background: var(--sheet); margin-top: clamp(36px, 5vw, 60px); padding: clamp(20px, 4vw, 52px); }
+.logos { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: clamp(22px, 3.4vw, 44px) clamp(20px, 3vw, 44px); align-items: center; }
+.logos li { display: grid; place-items: center; height: 56px; }
+.logos img { max-height: 40px; width: auto; max-width: 100%; object-fit: contain; mix-blend-mode: multiply; }
+.logos .is-tall img { max-height: 56px; }
+.also { margin-top: 26px; font-size: 15px; color: var(--mute); line-height: 1.8; }
+.also b { color: var(--ink); font-weight: 500; }
+.note { margin-top: 10px; font-size: 13.5px; color: var(--mute); }
+
+/* ── 연락처 ───────────────────────── */
+.contact { padding-block: clamp(72px, 10vw, 140px) clamp(40px, 5vw, 64px); }
+.contact h2 { font-family: var(--display); font-weight: 800; letter-spacing: -0.035em; line-height: 1.2; font-size: clamp(30px, 4.6vw, 56px); text-wrap: balance; }
+.contact .who { margin-top: clamp(36px, 5vw, 60px); color: var(--slate-mute); }
+.contact .who b { display: block; color: var(--slate-ink); font-family: var(--display); font-weight: 700; font-size: 22px; letter-spacing: 0.12em; margin-bottom: 4px; }
+.lines { margin-top: 22px; border-top: 1px solid var(--slate-rule); }
+.lines li { display: grid; grid-template-columns: 110px minmax(0, 1fr) auto; gap: 8px 20px; align-items: center; padding-block: 16px; border-bottom: 1px solid var(--slate-rule); }
+.lines .k { color: var(--slate-mute); }
+.lines .v { font-family: var(--display); font-weight: 700; font-size: clamp(19px, 2.6vw, 30px); letter-spacing: -0.01em; user-select: all; }
+.lines a.v { user-select: auto; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+.copy {
+  font: inherit; font-family: var(--mono); font-size: 12.5px; letter-spacing: 0.04em;
+  background: none; color: var(--slate-mute); border: 1px solid var(--slate-rule); padding: 7px 12px; cursor: pointer;
+}
+.copy:hover { color: var(--slate-ink); border-color: var(--slate-mute); }
+.end { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px; margin-top: clamp(48px, 7vw, 88px); color: var(--slate-mute); font-size: 14px; }
+.end img { width: 132px; }
+
+@media (max-width: 1000px) {
+  .cols { grid-template-columns: minmax(0, 1fr); }
+  .eyebrow { padding-top: 0; }
+}
+@media (max-width: 860px) {
+  .cols { grid-template-columns: minmax(0, 1fr); }
+  .eyebrow { padding-top: 0; }
+  .project, .others { grid-template-columns: minmax(0, 1fr); }
+  .ledger, .ledger.terms { grid-template-columns: minmax(0, 1fr); }
+  .spec div { grid-template-columns: minmax(0, 1fr); }
+  .modes { grid-template-columns: minmax(0, 1fr); }
+  .pair { grid-template-columns: minmax(0, 1fr); border-bottom: 0; }
+  .pair .project { border-bottom: 1px solid var(--rule); }
+}
+@media (max-width: 560px) {
+  body { font-size: 16px; }
+  .figures { grid-template-columns: minmax(0, 1fr); }
+  .frames { flex-wrap: wrap; }
+  .frames img { flex: 1 1 100%; width: 100%; }
+  .logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lines li { grid-template-columns: minmax(0, 1fr) auto; }
+  .lines .k { grid-column: 1 / -1; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<header class="slate hero">
+  <div class="wrap">
+    <div class="hero-bar">
+      <span class="mono tc" id="tc" aria-hidden="true">00:00:00:00</span>
+      <nav aria-label="섹션 바로가기">
+        <a href="#about">소개</a>
+        <a href="#work">작업</a>
+        <a href="#fields">분야</a>
+        <a href="#retained">정기 운영</a>
+        <a href="#ai">AI 제작</a>
+        <a href="#clients">함께한 곳</a>
+        <a href="#contact">문의</a>
+      </nav>
+    </div>
+    <div class="hero-stage">
+      <h1>
+        <span>제대로 하는 영상 파트너,</span>
+        <img src="logo/dotmov-white.png" width="1200" height="249" alt="DOTMOV">
+      </h1>
+    </div>
+    <p class="hero-foot"><span>www.dot-mov.com</span><span>2023 —</span><span>Seoul, Korea</span></p>
+  </div>
+</header>
+
+<main>
+  <section class="section" id="about">
+    <div class="wrap cols">
+      <p class="mono eyebrow">회사 소개</p>
+      <div>
+        <h2 class="headline">기획부터 납품까지,<br>담당이 바뀌지 않습니다.</h2>
+        <div class="lede">
+          <p>2023년 설립 이후 공공기관, 지자체, 기업과 함께 350편이 넘는 영상을 만들었습니다. 메인 PD가 기획, 촬영, 편집, 그래픽, 납품을 직접 총괄합니다. 그래서 결정이 빠르고, 처음 나눈 이야기가 마지막 납품본까지 이어집니다.</p>
+          <p>메인 PD는 영상 연출을 전공한 편집자 출신입니다. 평창동계올림픽 기업관, LG디스플레이, 국립현대미술관 프로젝트를 거쳤습니다.</p>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <dl class="figures">
+        <div><dt>350<small>+</small></dt><dd>제작한 영상<span>공공기관 · 지자체 · 기업</span></dd></div>
+        <div><dt>70<small>%+</small></dt><dd>다시 찾은 기관<span>영상 납품 목록 기준</span></dd></div>
+        <div><dt>2023</dt><dd>설립<span>서울 기반 · 전국 촬영</span></dd></div>
+      </dl>
+    </div>
+    <div class="wrap cols" style="margin-top: clamp(56px, 8vw, 104px)">
+      <p class="mono eyebrow">합류 범위</p>
+      <div>
+        <h3 class="subhead">프로젝트에 필요한 만큼만 합류합니다.</h3>
+        <div class="modes">
+          <div><h3>전체 제작 총괄</h3><p>기획, 촬영, 편집, 그래픽, 납품까지 한 팀이 끝냅니다.</p></div>
+          <div><h3>촬영팀 투입</h3><p>이미 기획이 있는 프로젝트에 현장 촬영팀으로 들어갑니다.</p></div>
+          <div><h3>후반 작업 단독</h3><p>촬영본을 받아 편집, 모션그래픽, 컬러만 맡습니다.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work">
+    <div class="wrap cols">
+      <p class="mono eyebrow">작업</p>
+      <h2 class="headline">정책 홍보부터<br>CF, 공연 무대까지.</h2>
+    </div>
+    <div class="wrap">
+      <div class="work-group">
+        <header><h3>공공</h3><span class="mono">Public &amp; Institutional</span></header>
+        
+      <article class="project ">
+        <div class="project-meta">
+          
+          <h4>한국지역난방공사</h4>
+          <p class="kind">기업 홍보</p>
+          <p class="role">실사 + 2D 모션그래픽 종합편집</p>
+        </div>
+        <div class="frame-rows">
+          <div class="frames">
+          <img style="--r:1.845" src="img/heat-1.jpg" width="1400" height="759" alt="수소 터빈 구조를 설명하는 모션그래픽 장면" loading="lazy">
+          <img style="--r:2.059" src="img/heat-2.jpg" width="1400" height="680" alt="잉여 재생에너지를 열에너지로 바꾸는 과정을 그린 인포그래픽 장면" loading="lazy">
+          </div>
+          <div class="frames">
+          <img style="--r:2.647" src="img/heat-3.jpg" width="1400" height="529" alt="해외 사업을 소개하는 타이틀 장면" loading="lazy">
+          <img style="--r:3.139" src="img/heat-4.jpg" width="1400" height="446" alt="안전모를 쓰고 설비를 점검하는 직원" loading="lazy">
+          </div>
+          <div class="frames">
+          <img style="--r:4.878" src="img/heat-6.jpg" width="1400" height="287" alt="발전 설비 안을 걷는 직원들" loading="lazy">
+          <img style="--r:4.965" src="img/heat-5.jpg" width="1400" height="282" alt="열화상 카메라로 설비를 점검하는 장면" loading="lazy">
+          </div>
+        </div>
+      </article>
+      <article class="project ">
+        <div class="project-meta">
+          
+          <h4>국립중앙도서관 개관 80주년</h4>
+          <p class="kind">기념사업 패키지</p>
+          <p class="role">메인 · 쇼츠 · 축하메시지 · 행사</p>
+        </div>
+        <div class="frame-rows">
+          <div class="frames">
+          <img style="--r:1.609" src="img/nlk-1.jpg" width="1152" height="716" alt="국립중앙도서관 열람실 전경" loading="lazy">
+          <img style="--r:1.604" src="img/nlk-2.jpg" width="1152" height="718" alt="국립중앙도서관 80주년 전시 공간" loading="lazy">
+          </div>
+        </div>
+      </article>
+      <article class="project ">
+        <div class="project-meta">
+          
+          <h4>한국승강기안전공단</h4>
+          <p class="kind">정기 콘텐츠 3개 시리즈</p>
+          <p class="role">기념식 · 엑스포</p>
+        </div>
+        <div class="frame-rows">
+          <div class="frames">
+          <img style="--r:2.441" src="img/koelsa-1.jpg" width="1152" height="472" alt="승강기안전 결의 퍼포먼스 무대" loading="lazy">
+          <img style="--r:2.380" src="img/koelsa-2.jpg" width="1152" height="484" alt="무대를 촬영 중인 중계 카메라" loading="lazy">
+          <img style="--r:2.441" src="img/koelsa-3.jpg" width="1152" height="472" alt="2024 승강기안전주간 행사장 전경" loading="lazy">
+          </div>
+        </div>
+      </article>
+      <article class="project ">
+        <div class="project-meta">
+          
+          <h4>오송 KBIOHealth</h4>
+          <p class="kind">연속 인터뷰 · 기관 정기 콘텐츠</p>
+          <p class="role">구성 · 촬영 · 편집</p>
+        </div>
+        <div class="frame-rows">
+          <div class="frames">
+          <img style="--r:1.840" src="img/kbio-1.jpg" width="1152" height="626" alt="KBIOHealth 로비에서 진행한 촬영 현장" loading="lazy">
+          <img style="--r:1.426" src="img/kbio-2.jpg" width="1152" height="808" alt="KBIOHealth 인터뷰 촬영 세팅" loading="lazy">
+          </div>
+          <div class="frames">
+          <img style="--r:1.438" src="img/kbio-3.jpg" width="1152" height="801" alt="연구실에서 연구원을 촬영하는 현장" loading="lazy">
+          <img style="--r:1.820" src="img/kbio-4.jpg" width="1152" height="633" alt="인터뷰 촬영 세팅" loading="lazy">
+          </div>
+        </div>
+      </article>
+      <article class="project ">
+        <div class="project-meta">
+          
+          <h4>한국지역난방공사 양수발전소</h4>
+          <p class="kind">지역 · 에너지 홍보영상</p>
+          <p class="role">기획 · 촬영 · 종합편집</p>
+        </div>
+        <div class="frame-rows">
+          <div class="frames">
+          <img style="--r:1.609" src="img/plant-1.jpg" width="1152" height="716" alt="발전 설비 안에서 진행한 촬영 현장" loading="lazy">
+          <img style="--r:1.604" src="img/plant-2.jpg" width="1152" height="718" alt="촬영 후 모니터링 중인 제작진" loading="lazy">
+          </div>
+        </div>
+      </article>
+      <article class="project ">
+        <div class="project-meta">
+          
+          <h4>IBCC 2024 방송 공동제작 국제 컨퍼런스</h4>
+          <p class="kind">컨퍼런스 아카이빙</p>
+          <p class="role">기록 촬영 · 편집 · 납품</p>
+        </div>
+        <div class="frame-rows">
+          <div class="frames">
+          <img style="--r:1.897" src="img/ibcc-2.jpg" width="1400" height="738" alt="IBCC 2024 타이틀 화면" loading="lazy">
+          <img style="--r:2.718" src="img/ibcc-3.jpg" width="1400" height="515" alt="컨퍼런스 연사 3인의 영상 메시지 화면" loading="lazy">
+          </div>
+        </div>
+      </article>
+        <dl class="others">
+          <dt class="mono">그 외</dt>
+          <dd>국세청 · 기상청 · 중앙선거관리위원회 · 방송통신위원회 · 농촌진흥청 · 농림축산식품부 · 한국산업인력공단 · 국립세종도서관 · 김포시 · 성남산업진흥원 · 국립현대미술관</dd>
+        </dl>
+      </div>
+      <div class="work-group">
+        <header><h3>광고 · 방송 · 공연</h3><span class="mono">Commercial &amp; Culture</span></header>
+        
+      <article class="project is-stack">
+        <div class="project-meta">
+          
+          <h4>남대문생맥주 × 권은비</h4>
+          <p class="kind">모델 기용 브랜드 커머셜</p>
+          <p class="role">콘셉트 · 현장 연출 · 후반</p>
+        </div>
+        <div class="frame-rows">
+          <div class="frames">
+          <img style="--r:1.000" src="img/beer-1.jpg" width="1400" height="1400" alt="분홍빛 하늘을 띄운 LED 월 스튜디오 촬영 현장" loading="lazy">
+          <img style="--r:1.000" src="img/beer-2.jpg" width="1400" height="1400" alt="도시 야경을 띄운 LED 월 앞 촬영 현장" loading="lazy">
+          <img style="--r:1.000" src="img/beer-3.jpg" width="1400" height="1400" alt="LED 월 스튜디오에서 모니터를 확인하는 스태프" loading="lazy">
+          </div>
+        </div>
+      </article>
+      <article class="project is-stack">
+        <div class="project-meta">
+          
+          <h4>YTN 사이언스</h4>
+          <p class="kind">방송 협업 · 기업 현장</p>
+          <p class="role">촬영 · 현장 스케치</p>
+        </div>
+        <div class="frame-rows">
+          <div class="frames">
+          <img style="--r:2.435" src="img/ytn-1.jpg" width="1400" height="575" alt="호리존 스튜디오 촬영 현장" loading="lazy">
+          <img style="--r:2.381" src="img/ytn-2.jpg" width="1400" height="588" alt="프롬프터 카메라를 조작하는 촬영 감독" loading="lazy">
+          <img style="--r:2.431" src="img/ytn-3.jpg" width="1400" height="576" alt="카메라 뷰파인더를 확인하는 촬영 감독" loading="lazy">
+          </div>
+        </div>
+      </article>
+      <article class="project is-stack">
+        <div class="project-meta">
+          
+          <h4>오페라 ‘세빌리아의 이발사’</h4>
+          <p class="kind">공연 배경영상 · 본공연 기록</p>
+          <p class="role">제작 · 촬영 · 편집</p>
+        </div>
+        <div class="frame-rows">
+          <div class="frames">
+          <img style="--r:1.000" src="img/opera-1.jpg" width="1080" height="1080" alt="세빌리아의 이발사 현수막이 걸린 공연장 외관" loading="lazy">
+          <img style="--r:1.000" src="img/opera-2.jpg" width="1080" height="1080" alt="공연 전 무대와 객석" loading="lazy">
+          <img style="--r:1.000" src="img/opera-3.jpg" width="1080" height="1080" alt="객석 뒤편에 설치한 본공연 기록 카메라" loading="lazy">
+          </div>
+        </div>
+      </article>
+      <article class="project is-stack">
+        <div class="project-meta">
+          
+          <h4>대한임상미용학회</h4>
+          <p class="kind">의사 대상 학술대회 · 반복 수행</p>
+          <p class="role">다중 카메라 · 인터뷰 · 스케치</p>
+        </div>
+        <div class="frame-rows">
+          <div class="frames">
+          <img style="--r:1.609" src="img/derma-1.jpg" width="1152" height="716" alt="학술대회 강연장 전경" loading="lazy">
+          <img style="--r:1.604" src="img/derma-2.jpg" width="1152" height="718" alt="보랏빛 조명의 학술대회 세션 현장" loading="lazy">
+          </div>
+        </div>
+      </article>
+      <article class="project is-stack">
+        <div class="project-meta">
+          
+          <h4>현대백화점 라이브커머스</h4>
+          <p class="kind">셀럽 · 라이브 현장</p>
+          <p class="role">촬영 · 스케치</p>
+        </div>
+        <div class="frame-rows">
+          <div class="frames">
+          <img style="--r:2.011" src="img/hyundai-1.jpg" width="1400" height="696" alt="현대백화점 라이브커머스 방송 세트" loading="lazy">
+          <img style="--r:2.011" src="img/hyundai-2.jpg" width="1400" height="696" alt="라이브커머스 송출 화면" loading="lazy">
+          </div>
+          <div class="frames">
+          <img style="--r:2.006" src="img/hyundai-3.jpg" width="1400" height="698" alt="매장에서 출연자를 촬영하는 현장" loading="lazy">
+          <img style="--r:2.006" src="img/hyundai-4.jpg" width="1400" height="698" alt="매장에서 제품을 소개하는 출연자들" loading="lazy">
+          </div>
+        </div>
+      </article>
+        <dl class="others">
+          <dt class="mono">그 외</dt>
+          <dd>인터파크 소비더마켓 · 한고은 요리채널 · 브랑떼 TV홈쇼핑 · 나비 · 뮤직비디오 · 승강기 엑스포 · 평창올림픽 기업부스 · 카본코리아 · LG디스플레이 × 서울대학교병원 · 비달사순 · 수협</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="fields">
+    <div class="wrap cols">
+      <p class="mono eyebrow">분야</p>
+      <div>
+        <h2 class="headline">한 팀이 맡는<br>여섯 가지 일.</h2>
+        <ul class="ledger">
+          <li><b>정책 · 공공</b><span>부처 · 청 · 공단 · 지자체 프로젝트</span><em>국세청 · 기상청 · 중앙선거관리위원회 · 김포시 · 진안군</em></li>
+          <li><b>기념사업</b><span>메인 · 쇼츠 · 축하메시지 · 스케치 패키지</span><em>국립중앙도서관 개관 80주년 · 한국문화유산협회</em></li>
+          <li><b>멀티 포맷</b><span>매체별 길이와 규격을 동시에 납품</span><em>김포시 3종 · 선관위 전광판 · 쇼츠</em></li>
+          <li><b>행사 · 컨퍼런스</b><span>기념식 · 학회 · 엑스포 현장 대응</span><em>승강기안전주간 · IBCC · 대한임상미용학회</em></li>
+          <li><b>CF · 커머셜</b><span>브랜드 톤과 출연자 중심의 상업 영상</span><em>남대문생맥주 × 권은비 · 인터파크 · 현대백화점</em></li>
+          <li><b>방송 · 공연</b><span>방송 협업 · 라이브 · 무대 배경영상</span><em>YTN 사이언스 · 나비 · 오페라 ‘세빌리아의 이발사’</em></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="retained">
+    <figure class="wrap band">
+      <div class="frames"><img style="--r:1.778" src="img/grading.jpg" width="2000" height="1125" alt="컬러 그레이딩 패널과 모니터가 놓인 색보정실" loading="lazy"></div>
+    </figure>
+    <div class="wrap cols">
+      <p class="mono eyebrow">정기 운영</p>
+      <div>
+        <h2 class="headline">단발 납품이 아니라,<br>연 단위로 함께합니다.</h2>
+        <ul class="ledger terms">
+          <li><b>오송 KBIOHealth</b><span class="term">3년째</span><em>꿀팁 · 사용법 · 헤이바이오</em></li>
+          <li><b>한국승강기안전공단</b><span class="term">2년 연속</span><em>저스트원미닛 · 신비한 사전 · 실험대행소</em></li>
+          <li><b>한국산업인력공단</b><span class="term">2년째</span><em>숏폼 · 현장 영상</em></li>
+          <li><b>국립중앙도서관</b><span class="term">연중 운영</span><em>1분속독 · 개관 80주년 패키지</em></li>
+          <li><b>국립세종도서관</b><span class="term">진행 중</span><em></em></li>
+          <li><b>법무부</b><span class="term">진행 중</span><em>잡지 〈공존〉 인터뷰 영상</em></li>
+          <li><b>국세청</b><span class="term">2026</span><em>AI 쇼츠 시리즈 4편</em></li>
+          <li><b>기상청</b><span class="term">2026</span><em>AI 릴스 · 지자체 컬래버</em></li>
+          <li><b>한국과학창의재단</b><span class="term">시리즈 제작</span><em>사이언스히어로즈 · 꿀팁톡</em></li>
+          <li><b>손주희 채널</b><span class="term">시리즈 제작</span><em>코덕노트 · 손끗차이 · 오늘의 손주희</em></li>
+        </ul>
+        <p class="closing">품질은 안정적으로, 단가는 합리적으로. 올해 맡긴 곳이 내년에도 맡깁니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="ai">
+    <div class="wrap cols">
+      <p class="mono eyebrow">AI 제작</p>
+      <div>
+        <h2 class="headline">AI도 실제 납품<br>경험으로 말합니다.</h2>
+        <div class="lede">
+          <p>새 기술은 먼저 배우고 바로 실무에 씁니다. 국세청, 기상청, 중앙선거관리위원회, 온라인 게임 홍보 영상을 생성형 AI로 제작해 납품했습니다.</p>
+          <p>수십 개의 모델을 노드 기반 파이프라인으로 묶어, 빠른 회전이 필요한 숏폼과 실사로 찍기 어려운 장면을 만듭니다. AI 음성 생성도 같은 흐름 안에서 처리합니다.</p>
+        </div>
+        <ul class="chips" aria-label="사용 도구">
+          <li>Seedance</li><li>Higgsfield Canvas</li><li>Google Flow</li><li>Typecast</li>
+        </ul>
+        <figure class="ai-strip">
+          <div class="frames">
+          <img style="--r:1.782" src="img/ai-1.jpg" width="335" height="188" alt="실내 공간에 의자째 떠 있는 인물을 그린 AI 생성 장면" loading="lazy">
+          <img style="--r:1.821" src="img/ai-2.jpg" width="335" height="184" alt="노을 진 호수 위에 의자째 떠 있는 인물을 그린 AI 생성 장면" loading="lazy">
+          <img style="--r:2.233" src="img/ai-3.jpg" width="335" height="150" alt="노드로 연결된 AI 영상 제작 파이프라인 화면" loading="lazy">
+          </div>
+          <figcaption>AI로 생성한 장면 두 컷과, 이를 만든 노드 파이프라인 화면.</figcaption>
+        </figure>
+      </div>
+    </div>
+    <div class="wrap cols ai-reel">
+      <p class="mono eyebrow">기상청 릴스</p>
+      <div>
+        <h3 class="subhead">AI 공기관 납품</h3>
+        <div class="frames frames-v">
+        <img style="--r:0.562" src="img/kma-1.jpg" width="540" height="960" alt="해운대 해변 위를 나는 부산시 마스코트 부기" loading="lazy">
+        <img style="--r:0.562" src="img/kma-2.jpg" width="540" height="960" alt="광안대교 아래 요트 위에 선 부기" loading="lazy">
+        <img style="--r:0.562" src="img/kma-3.jpg" width="540" height="960" alt="해변 앞바다에서 보트를 모는 부기" loading="lazy">
+        <img style="--r:0.562" src="img/kma-4.jpg" width="405" height="720" alt="하늘에서 내려다본 조선시대 마을" loading="lazy">
+        <img style="--r:0.562" src="img/kma-5.jpg" width="405" height="720" alt="수원화성 축조 현장에서 도면을 든 수원이와 기상이" loading="lazy">
+        <img style="--r:0.562" src="img/kma-6.jpg" width="405" height="720" alt="비 내리는 저수지 앞에 선 수원이와 기상이" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="gear">
+    <div class="wrap cols">
+      <p class="mono eyebrow">장비 · 후반</p>
+      <div>
+        <h2 class="headline">규모에 맞게,<br>과하지도 모자라지도 않게.</h2>
+        <dl class="spec">
+          <div><dt class="mono">카메라</dt><dd>RED KOMODO 6K · SONY 시네마 라인 · DJI Osmo<small>자체 보유 장비에 대여 시스템을 더해 소규모 인터뷰부터 대형 행사 중계까지 대응합니다.</small></dd></div>
+          <div><dt class="mono">편집 · 컬러</dt><dd>DaVinci Resolve · Premiere Pro · Final Cut Pro</dd></div>
+          <div><dt class="mono">모션 · 디자인</dt><dd>After Effects · Apple Motion · Photoshop · Illustrator</dd></div>
+          <div><dt class="mono">사운드 · 소스</dt><dd>Epidemic Sound · Artlist · Motion Array · Envato 외 10여 종 라이선스</dd></div>
+          <div><dt class="mono">데이터</dt><dd>사내 대용량 NAS<small>프로젝트 원본과 납품본을 사내 서버에 보관합니다.</small></dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="clients">
+    <div class="wrap cols">
+      <p class="mono eyebrow">함께한 곳</p>
+      <div>
+        <h2 class="headline">함께한 기관의 70%+가<br>다시 찾았습니다.</h2>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="sheet">
+        <ul class="logos">
+        <li><img src="logo/c53.png" width="640" height="153" alt="국립중앙도서관" loading="lazy"></li>
+        <li><img src="logo/c54.png" width="640" height="122" alt="한국승강기안전공단" loading="lazy"></li>
+        <li><img src="logo/c55.png" width="640" height="170" alt="오송첨단의료산업진흥재단 KBIOHealth" loading="lazy"></li>
+        <li><img src="logo/c56.png" width="640" height="128" alt="한국지역난방공사" loading="lazy"></li>
+        <li><img src="logo/c57.png" width="438" height="113" alt="국가유산청" loading="lazy"></li>
+        <li class="is-tall"><img src="logo/c58.png" width="269" height="200" alt="중소벤처기업부" loading="lazy"></li>
+        <li><img src="logo/c59.png" width="640" height="74" alt="한국동서발전" loading="lazy"></li>
+        <li><img src="logo/c60.png" width="499" height="119" alt="한국산림복지진흥원" loading="lazy"></li>
+        <li><img src="logo/c61.png" width="640" height="118" alt="한국수자원조사기술원" loading="lazy"></li>
+        <li><img src="logo/c62.png" width="640" height="133" alt="한국문화유산협회" loading="lazy"></li>
+        <li><img src="logo/c63.png" width="619" height="113" alt="충청북도문화재연구원" loading="lazy"></li>
+        <li><img src="logo/c64.png" width="552" height="200" alt="한국탄소산업진흥원" loading="lazy"></li>
+        <li class="is-tall"><img src="logo/c65.png" width="400" height="200" alt="광주정보문화산업진흥원" loading="lazy"></li>
+        <li><img src="logo/c66.png" width="640" height="100" alt="성남산업진흥원" loading="lazy"></li>
+        <li class="is-tall"><img src="logo/c67.png" width="339" height="200" alt="이천시" loading="lazy"></li>
+        <li class="is-tall"><img src="logo/c68.png" width="146" height="200" alt="예담고" loading="lazy"></li>
+        <li class="is-tall"><img src="logo/c69.png" width="253" height="200" alt="한국과학창의재단" loading="lazy"></li>
+        <li><img src="logo/c70.png" width="467" height="200" alt="국세청" loading="lazy"></li>
+        <li><img src="logo/c71.png" width="571" height="200" alt="기상청" loading="lazy"></li>
+        <li class="is-tall"><img src="logo/c72.png" width="275" height="200" alt="중앙선거관리위원회" loading="lazy"></li>
+        <li><img src="logo/c73.png" width="640" height="137" alt="방송통신위원회" loading="lazy"></li>
+        <li><img src="logo/c74.png" width="446" height="137" alt="농촌진흥청" loading="lazy"></li>
+        <li><img src="logo/c75.png" width="640" height="138" alt="농림축산식품부" loading="lazy"></li>
+        <li><img src="logo/c76.png" width="640" height="76" alt="한국산업인력공단" loading="lazy"></li>
+        <li><img src="logo/c77.png" width="600" height="137" alt="국립세종도서관" loading="lazy"></li>
+        <li><img src="logo/c78.png" width="640" height="152" alt="국립현대미술관" loading="lazy"></li>
+        <li class="is-tall"><img src="logo/c79.png" width="395" height="200" alt="대한불교조계종" loading="lazy"></li>
+        <li><img src="logo/c80.png" width="397" height="125" alt="현대백화점" loading="lazy"></li>
+        <li><img src="logo/c81.png" width="573" height="200" alt="수협" loading="lazy"></li>
+        <li class="is-tall"><img src="logo/c82.png" width="204" height="200" alt="비달사순" loading="lazy"></li>
+        <li><img src="logo/c83.png" width="610" height="122" alt="YTN" loading="lazy"></li>
+        <li><img src="logo/c84.png" width="640" height="84" alt="서울대학교병원" loading="lazy"></li>
+        </ul>
+      </div>
+      <p class="also"><b>로고 외 협업 기관</b> — 법무부 · 한국불교문화사업단 · 김포시 · 진안군 · 광양시 · 태안군 · LG디스플레이 × 서울대학교병원 · 대한임상미용학회 · 인터파크 · 남대문생맥주</p>
+      <p class="note">재의뢰 비율은 영상 납품 목록 기준입니다. 협업 이력에는 대표 개인 수행 이력이 포함됩니다.</p>
+    </div>
+  </section>
+</main>
+
+<footer class="slate contact" id="contact">
+  <div class="wrap">
+    <h2>만들 영상이 있다면,<br>일정과 예산부터 편하게 물어보세요.</h2>
+    <p class="who"><b>이록산</b>메인 PD · DOTMOV</p>
+    <ul class="lines">
+      <li><span class="mono k">전화</span><span class="v" id="v-tel">010-7244-0141</span><button class="copy" type="button" id="copy-tel" data-copy="v-tel">복사</button></li>
+      <li><span class="mono k">이메일</span><span class="v" id="v-mail">main@dot-mov.com</span><button class="copy" type="button" id="copy-mail" data-copy="v-mail">복사</button></li>
+      <li><span class="mono k">웹</span><a class="v" href="https://www.dot-mov.com" target="_blank" rel="noopener">www.dot-mov.com</a><span></span></li>
+      <li><span class="mono k">인스타그램</span><span class="v" id="v-ig">@_dotmov</span><button class="copy" type="button" id="copy-ig" data-copy="v-ig">복사</button></li>
+    </ul>
+    <div class="end">
+      <img src="logo/dotmov-white.png" width="1200" height="249" alt="DOTMOV">
+      <span>서울 기반 · 전국</span>
+    </div>
+  </div>
+</footer>
+
+<dialog id="lightbox" aria-label="사진 크게 보기"><img alt=""></dialog>
+
+<script>
+(function () {
+  // 사진을 누르면 화면 가득 크게 보기
+  var lb = document.getElementById('lightbox');
+  if (lb && lb.showModal) {
+    var big = lb.querySelector('img');
+    document.querySelectorAll('.frames img').forEach(function (im) {
+      im.tabIndex = 0;
+      var open = function () { big.src = im.currentSrc || im.src; big.alt = im.alt; lb.showModal(); };
+      im.addEventListener('click', open);
+      im.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+    });
+    lb.addEventListener('click', function () { lb.close(); });
+  }
+  // 상단 타임코드: 페이지를 연 뒤 흐른 시간을 24fps 기준으로 표시
+  var tc = document.getElementById('tc');
+  var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (tc && !still) {
+    var t0 = performance.now();
+    var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+    var tick = function (now) {
+      var f = Math.floor((now - t0) / 1000 * 24);
+      var s = Math.floor(f / 24);
+      tc.textContent = pad(Math.floor(s / 3600) % 100) + ':' + pad(Math.floor(s / 60) % 60) + ':' + pad(s % 60) + ':' + pad(f % 24);
+      requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var el = document.getElementById(btn.dataset.copy);
+      var done = function () { btn.textContent = '복사됨'; setTimeout(function () { btn.textContent = '복사'; }, 1600); };
+      var select = function () {
+        var r = document.createRange(); r.selectNodeContents(el);
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        btn.textContent = '선택됨';
+      };
+      try { navigator.clipboard.writeText(el.textContent.trim()).then(done, select); } catch (e) { select(); }
+    });
+  });
+})();
+</script>
+</body>
+</html>
