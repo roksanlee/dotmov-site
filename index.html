@@ -95,27 +95,49 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .hero-stage::after { bottom: 18px; right: 0; border-left: 0; border-top: 0; }
 .hero h1 { display: grid; gap: clamp(18px, 3vw, 30px); justify-items: center; }
 .hero h1 span { font-family: var(--display); font-weight: 700; font-size: clamp(20px, 2.6vw, 30px); letter-spacing: -0.01em; }
-.logo-wrap { position: relative; display: block; width: min(440px, 72vw); aspect-ratio: 1200 / 249; cursor: pointer; }
-.logo-wrap img { width: 100%; height: 100%; transition: opacity .18s linear; }
-.logo-cuts {
-  position: absolute; inset: 0; opacity: 0; overflow: hidden;
-  -webkit-mask: url("logo/dotmov-white.png") center / 100% 100% no-repeat;
-  mask: url("logo/dotmov-white.png") center / 100% 100% no-repeat;
+.hero { position: relative; overflow: hidden; isolation: isolate; }
+.hero-reel { position: absolute; inset: 0; z-index: -1; opacity: 0; pointer-events: none; }
+.hero-reel i { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0; transition: opacity 1.2s ease; filter: saturate(.78) brightness(.6) contrast(1.06); }
+.hero-reel i.on { opacity: 1; }
+.hero-reel i.zoom { animation: reel-zoom 7s linear both; }
+.hero-reel::after {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 72% 62% at 50% 46%, rgba(0, 0, 0, .28), rgba(0, 0, 0, .74) 78%),
+    linear-gradient(180deg, rgba(0, 0, 0, .72), rgba(0, 0, 0, 0) 24%, rgba(0, 0, 0, 0) 60%, var(--slate) 100%);
 }
-.logo-cuts i { position: absolute; inset: -30% -6%; background-size: cover; background-position: center; opacity: 0; }
-.logo-cuts i.on { opacity: 1; animation: cut-drift 1.2s linear both; }
-.hero .tagline { transition: opacity .5s ease, transform .5s ease; }
-.is-reeling .logo-wrap { animation: reel-settle 3.3s cubic-bezier(.2, .7, .2, 1) both; }
-.is-reeling .logo-wrap img { opacity: 0; }
-.is-reeling .logo-cuts { opacity: 1; }
-.is-reeling .tagline { opacity: 0; transform: translateY(8px); transition-duration: .15s; }
-.is-reeling .hero-stage::before, .is-reeling .hero-stage::after { opacity: 0; }
-.hero-stage::before, .hero-stage::after { transition: opacity .6s ease .2s; }
-.just-landed .logo-wrap img { animation: logo-flash .7s ease-out both; }
-@keyframes cut-drift { from { transform: scale(1.18) translateX(-1.5%); } to { transform: scale(1.04) translateX(1.5%); } }
-@keyframes reel-settle { from { transform: scale(1.12); } to { transform: scale(1); } }
-@keyframes logo-flash { 0% { filter: brightness(2.2) drop-shadow(0 0 22px rgba(255, 255, 255, .55)); } 100% { filter: none; } }
-@media (prefers-reduced-motion: reduce) { .logo-wrap { cursor: default; } }
+.logo-box { position: relative; display: block; width: min(520px, 76vw); }
+.logo-wrap { position: relative; display: block; aspect-ratio: 1200 / 249; overflow: hidden; }
+.logo-wrap img { width: 100%; height: 100%; }
+.logo-letters, .logo-line { display: none; }
+.fx .logo-letters { display: block; position: absolute; inset: 0; }
+.fx .logo-wrap img { opacity: 0; }
+.logo-letters i {
+  position: absolute; inset: 0;
+  background: url("logo/dotmov-white.png") center / 100% 100% no-repeat;
+  clip-path: inset(0 var(--r) 0 var(--l));
+}
+.fx .logo-line { display: block; position: absolute; left: 0; right: 0; bottom: -12px; height: 1px; background: var(--slate-ink); transform: scaleX(0); transform-origin: left; }
+.fx.pre .logo-letters i { transform: translateY(106%); }
+.fx.pre .tagline, .fx.pre .hero-bar, .fx.pre .hero-foot { opacity: 0; }
+.fx.pre .hero-stage::before, .fx.pre .hero-stage::after { opacity: 0; }
+.fx.go .logo-line { animation: line-sweep 1.9s cubic-bezier(.7, 0, .2, 1) .1s both; }
+.fx.go .logo-letters i { animation: letter-rise 1s cubic-bezier(.16, 1, .3, 1) both; animation-delay: calc(.55s + var(--d) * 75ms); }
+.fx.go .tagline { animation: tag-in 1.1s cubic-bezier(.16, 1, .3, 1) 1.35s both; }
+.fx.go .hero-reel { animation: fade-in 1.8s ease 1.15s both; }
+.fx.go .hero-bar, .fx.go .hero-foot { animation: fade-in 1s ease 1.9s both; }
+.fx.go .hero-stage::before, .fx.go .hero-stage::after { animation: fade-in-soft 1s ease 1.9s both; }
+@keyframes reel-zoom { from { transform: scale(1.12); } to { transform: scale(1); } }
+@keyframes letter-rise { from { transform: translateY(106%); } to { transform: none; } }
+@keyframes line-sweep {
+  0% { transform: scaleX(0); transform-origin: left; }
+  38% { transform: scaleX(1); transform-origin: left; }
+  62% { transform: scaleX(1); transform-origin: right; }
+  100% { transform: scaleX(0); transform-origin: right; }
+}
+@keyframes tag-in { from { opacity: 0; letter-spacing: .3em; transform: translateY(6px); } to { opacity: 1; letter-spacing: -0.01em; transform: none; } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fade-in-soft { from { opacity: 0; } to { opacity: .7; } }
 .hero-foot {
   display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 26px;
   padding-block: 0 34px; color: var(--slate-mute); font-size: 14px;
@@ -273,6 +295,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 </head>
 <body>
 <header class="slate hero">
+  <div class="hero-reel" aria-hidden="true"><i></i><i></i></div>
   <div class="wrap">
     <div class="hero-bar">
       <span class="mono tc" id="tc" aria-hidden="true">00:00:00:00</span>
@@ -289,15 +312,25 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     <div class="hero-stage">
       <h1>
         <span class="tagline">제대로 하는 영상 파트너,</span>
-        <span class="logo-wrap" id="logo-reel">
-          <img src="logo/dotmov-white.png" width="1200" height="249" alt="DOTMOV">
-          <span class="logo-cuts" aria-hidden="true"></span>
+        <span class="logo-box">
+          <span class="logo-wrap">
+            <img src="logo/dotmov-white.png" width="1200" height="249" alt="DOTMOV">
+            <span class="logo-letters" aria-hidden="true"><i style="--l:0.00%;--r:83.42%;--d:0"></i><i style="--l:16.58%;--r:67.00%;--d:1"></i><i style="--l:33.00%;--r:53.92%;--d:2"></i><i style="--l:46.08%;--r:34.92%;--d:3"></i><i style="--l:65.08%;--r:17.83%;--d:4"></i><i style="--l:82.17%;--r:0.00%;--d:5"></i></span>
+          </span>
+          <span class="logo-line" aria-hidden="true"></span>
         </span>
       </h1>
     </div>
     <p class="hero-foot"><span>www.dot-mov.com</span><span>2023 —</span><span>Seoul, Korea</span></p>
   </div>
 </header>
+<script>
+(function () {
+  // 모션을 쓸 수 있을 때만 시작 전 상태로 숨겨 둔다 (스크립트가 없으면 완성 화면 그대로)
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  document.querySelector('.hero').classList.add('fx', 'pre');
+})();
+</script>
 
 <main>
   <section class="section" id="about">
@@ -487,7 +520,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
           <div class="frames">
           <img style="--r:1.000" src="img/opera-1.jpg" width="1080" height="1080" alt="세빌리아의 이발사 현수막이 걸린 공연장 외관" loading="lazy">
           <img style="--r:1.000" src="img/opera-2.jpg" width="1080" height="1080" alt="공연 전 무대와 객석" loading="lazy">
-          <img style="--r:1.000" src="img/opera-3.jpg" width="1080" height="1080" alt="객석 뒤편에 설치한 본공연 기록 카메라" loading="lazy">
+          <img style="--r:0.575" src="img/opera-3.jpg" width="750" height="1304" alt="수리오페라단 드라마틱 콘서트 오페라 세빌리아의 이발사 포스터" loading="lazy">
           </div>
         </div>
       </article>
@@ -725,52 +758,44 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     };
     requestAnimationFrame(tick);
   }
-  // 히어로 로고: 로고 글자를 창 삼아 작업 컷이 빠르게 지나간 뒤 흰 로고로 정착
-  var logo = document.getElementById('logo-reel');
+  // 히어로: 선이 지나가고 로고 글자가 올라온 뒤, 배경에 작업 컷이 천천히 이어진다
   var hero = document.querySelector('.hero');
-  if (logo && hero && !still) {
-    var cuts = logo.querySelector('.logo-cuts');
-    var shots = ['grading', 'beer-1', 'heat-4', 'koelsa-1', 'beer-2', 'heat-3', 'kbio-2', 'opera-2', 'hyundai-1', 'heat-1', 'ytn-2', 'beer-3'];
-    var beats = [300, 260, 230, 200, 180, 160, 150, 150, 160, 180, 220, 300];
-    var frames = [];
-    var ready = 0;
-    var playing = false;
-    shots.forEach(function (name) {
-      var el = document.createElement('i');
+  if (hero && hero.classList.contains('fx')) {
+    var shots = ['grading', 'beer-1', 'heat-4', 'beer-2', 'opera-2', 'koelsa-3', 'heat-3', 'beer-3', 'kbio-2', 'koelsa-1'];
+    var layers = hero.querySelectorAll('.hero-reel i');
+    var cur = 0;
+    var top = 0;
+    var started = false;
+    var show = function (n) {
       var im = new Image();
-      im.onload = function () { el.style.backgroundImage = 'url("img/' + name + '.jpg")'; el.dataset.ok = '1'; ready++; };
-      im.src = 'img/' + name + '.jpg';
-      cuts.appendChild(el);
-      frames.push(el);
-    });
-    var play = function () {
-      if (playing) return;
-      var list = frames.filter(function (f) { return f.dataset.ok; });
-      if (list.length < 4) return;
-      playing = true;
-      hero.classList.remove('just-landed');
-      hero.classList.add('is-reeling');
-      var i = 0;
-      var step = function () {
-        list.forEach(function (f) { f.classList.remove('on'); });
-        if (i >= list.length) {
-          hero.classList.remove('is-reeling');
-          hero.classList.add('just-landed');
-          playing = false;
-          return;
-        }
-        list[i].classList.add('on');
-        setTimeout(step, beats[i % beats.length]);
-        i++;
+      im.onload = function () {
+        var el = layers[top];
+        var prev = layers[1 - top];
+        el.style.backgroundImage = 'url("img/' + shots[n] + '.jpg")';
+        el.classList.remove('zoom');
+        void el.offsetWidth;
+        el.classList.add('zoom', 'on');
+        prev.classList.remove('on');
+        top = 1 - top;
       };
-      step();
+      im.src = 'img/' + shots[n] + '.jpg';
     };
-    var tries = 0;
-    var wait = setInterval(function () {
-      tries++;
-      if (ready >= shots.length || tries > 25) { clearInterval(wait); setTimeout(play, 350); }
-    }, 100);
-    logo.addEventListener('click', play);
+    var start = function () {
+      if (started) return;
+      started = true;
+      hero.classList.remove('pre');
+      hero.classList.add('go');
+      show(0);
+      setInterval(function () {
+        if (document.hidden) return;
+        cur = (cur + 1) % shots.length;
+        show(cur);
+      }, 3600);
+    };
+    var first = new Image();
+    first.onload = start;
+    first.src = 'img/' + shots[0] + '.jpg';
+    setTimeout(start, 1400);
   }
   document.querySelectorAll('.copy').forEach(function (btn) {
     btn.addEventListener('click', function () {
