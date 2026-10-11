@@ -253,7 +253,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .project .kind { margin-top: 10px; font-size: 15.5px; }
 .project .role { color: var(--mute); font-size: 14.5px; }
 .frames { display: flex; gap: 8px; min-width: 0; }
-.frames img { flex: var(--r) 1 0; min-width: 0; width: 0; background: var(--rule); }
+.frames img, .frames video { flex: var(--r) 1 0; min-width: 0; width: 0; height: auto; background: var(--rule); }
+.frames video { display: block; }
+.ai-strip.ai-more { margin-top: clamp(24px, 3.4vw, 40px); }
 .frame-rows { display: grid; gap: 8px; min-width: 0; }
 .project.is-stack { grid-template-columns: minmax(0, 1fr); row-gap: 16px; }
 .project.is-stack .project-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 20px; }
@@ -354,7 +356,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   body { font-size: 16px; }
   .figures { grid-template-columns: minmax(0, 1fr); }
   .frames { flex-wrap: wrap; }
-  .frames img { flex: 1 1 100%; width: 100%; }
+  .frames img, .frames video { flex: 1 1 100%; width: 100%; }
   .logos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .lines li { grid-template-columns: minmax(0, 1fr) auto; }
   .lines .k { grid-column: 1 / -1; }
@@ -662,7 +664,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
       </article>
         <dl class="others">
           <dt class="mono">그 외</dt>
-          <dd>인터파크 소비더마켓 · 한고은 요리채널 · 브랑떼 TV홈쇼핑 · 나비 · 뮤직비디오 · 승강기 엑스포 · 평창올림픽 기업부스 · 카본코리아 · LG디스플레이 × 서울대학교병원 · 비달사순 · 수협</dd>
+          <dd>김포 한강 푸르지오 리버프론트 · 인터파크 소비더마켓 · 한고은 요리채널 · 브랑떼 TV홈쇼핑 · 나비 · 뮤직비디오 · 승강기 엑스포 · 평창올림픽 기업부스 · 카본코리아 · LG디스플레이 × 서울대학교병원 · 비달사순 · 수협</dd>
         </dl>
       </div>
     </div>
@@ -729,6 +731,14 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
           <img style="--r:2.233" src="img/ai-3.jpg" width="335" height="150" alt="노드로 연결된 AI 영상 제작 파이프라인 화면" loading="lazy">
           </div>
           <figcaption>AI로 생성한 장면 두 컷과, 이를 만든 노드 파이프라인 화면.</figcaption>
+        </figure>
+        <figure class="ai-strip ai-more">
+          <div class="frames">
+          <video style="--r:0.5625" src="img/ai-clip.mp4" poster="img/ai-clip.jpg" width="720" height="1280" autoplay muted loop playsinline preload="metadata" aria-label="라운지 체어에 기대어 눈을 감고 있는 남성을 그린 AI 생성 영상"></video>
+          <img style="--r:1.014" src="img/ai-boogi.jpg" width="1100" height="1085" alt="빨간 안경을 머리에 얹은 갈매기 캐릭터 부기의 3D 렌더" loading="lazy">
+          <img style="--r:1.358" src="img/ai-sheet.jpg" width="1461" height="1076" alt="정장을 입은 선거관리위원회 캐릭터의 정면·측면·후면과 표정 시트" loading="lazy">
+          </div>
+          <figcaption>AI 생성 영상과 캐릭터 작업: 3D 캐릭터 렌더, 캐릭터 시트.</figcaption>
         </figure>
       </div>
     </div>
