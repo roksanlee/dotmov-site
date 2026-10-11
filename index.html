@@ -17,9 +17,10 @@
 <meta property="og:image:height" content="1125">
 <meta name="twitter:card" content="summary_large_image">
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "DOTMOV", "alternateName": ["닷무브", "DOTMOV 닷무브"], "url": "https://www.dot-mov.com/", "logo": "https://www.dot-mov.com/logo/dotmov-white.png", "image": "https://www.dot-mov.com/img/grading.jpg", "description": "서울 영상 제작사 DOTMOV(닷무브). 홍보영상, 숏폼, 행사 스케치, AI 영상 제작과 영상편집 의뢰를 받습니다. 공공기관·지자체·기업 영상 350편 이상 제작.", "foundingDate": "2023", "telephone": "+82-10-7244-0141", "email": "main@dot-mov.com", "address": {"@type": "PostalAddress", "addressLocality": "서울", "addressCountry": "KR"}, "areaServed": {"@type": "Country", "name": "대한민국"}, "sameAs": ["https://www.instagram.com/_dotmov/"], "knowsAbout": ["영상 제작", "영상편집", "홍보영상", "숏폼", "행사 스케치 촬영", "AI 영상 제작", "모션그래픽", "색보정"]}</script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;700;800;900&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+KR:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;700;800;900&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <style>
+@font-face { font-family: "Pretendard"; font-weight: 100 900; font-style: normal; font-display: swap; src: url("fonts/Pretendard.subset.woff2") format("woff2"); }
 /* Layout: 블랙 타이틀 카드로 열고 닫고, 그 사이는 종이 지면. 좌측 좁은 라벨 칼럼 + 우측 넓은 본문 칼럼의 콜시트 구조. 색은 사진이 맡는다. */
 :root {
   --paper: #f6f6f3;
@@ -35,8 +36,9 @@
   --sheet-ink: #5c5c62;
   --scrim: rgba(0, 0, 0, 0.9);
   --display: "Gothic A1", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-  --body: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-  --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --body: "Pretendard", -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --mono: "Pretendard", -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  --code: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
   --gutter: clamp(20px, 5vw, 72px);
   --label: 190px;
 }
@@ -80,7 +82,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .hero-bar nav { display: flex; flex-wrap: wrap; gap: 6px 22px; font-size: 14px; }
 .hero-bar a { text-decoration: none; }
 .hero-bar a:hover { color: var(--slate-ink); }
-.tc { font-variant-numeric: tabular-nums; }
+.tc { font-family: var(--code); font-variant-numeric: tabular-nums; }
 .tc::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #ff3b30; margin-right: 9px; vertical-align: 1px; }
 .hero-stage {
   position: relative; display: grid; place-items: center; text-align: center;
