@@ -95,7 +95,27 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .hero-stage::after { bottom: 18px; right: 0; border-left: 0; border-top: 0; }
 .hero h1 { display: grid; gap: clamp(18px, 3vw, 30px); justify-items: center; }
 .hero h1 span { font-family: var(--display); font-weight: 700; font-size: clamp(20px, 2.6vw, 30px); letter-spacing: -0.01em; }
-.hero h1 img { width: min(440px, 72vw); }
+.logo-wrap { position: relative; display: block; width: min(440px, 72vw); aspect-ratio: 1200 / 249; cursor: pointer; }
+.logo-wrap img { width: 100%; height: 100%; transition: opacity .18s linear; }
+.logo-cuts {
+  position: absolute; inset: 0; opacity: 0; overflow: hidden;
+  -webkit-mask: url("logo/dotmov-white.png") center / 100% 100% no-repeat;
+  mask: url("logo/dotmov-white.png") center / 100% 100% no-repeat;
+}
+.logo-cuts i { position: absolute; inset: -30% -6%; background-size: cover; background-position: center; opacity: 0; }
+.logo-cuts i.on { opacity: 1; animation: cut-drift 1.2s linear both; }
+.hero .tagline { transition: opacity .5s ease, transform .5s ease; }
+.is-reeling .logo-wrap { animation: reel-settle 3.3s cubic-bezier(.2, .7, .2, 1) both; }
+.is-reeling .logo-wrap img { opacity: 0; }
+.is-reeling .logo-cuts { opacity: 1; }
+.is-reeling .tagline { opacity: 0; transform: translateY(8px); transition-duration: .15s; }
+.is-reeling .hero-stage::before, .is-reeling .hero-stage::after { opacity: 0; }
+.hero-stage::before, .hero-stage::after { transition: opacity .6s ease .2s; }
+.just-landed .logo-wrap img { animation: logo-flash .7s ease-out both; }
+@keyframes cut-drift { from { transform: scale(1.18) translateX(-1.5%); } to { transform: scale(1.04) translateX(1.5%); } }
+@keyframes reel-settle { from { transform: scale(1.12); } to { transform: scale(1); } }
+@keyframes logo-flash { 0% { filter: brightness(2.2) drop-shadow(0 0 22px rgba(255, 255, 255, .55)); } 100% { filter: none; } }
+@media (prefers-reduced-motion: reduce) { .logo-wrap { cursor: default; } }
 .hero-foot {
   display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 26px;
   padding-block: 0 34px; color: var(--slate-mute); font-size: 14px;
@@ -268,8 +288,11 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     </div>
     <div class="hero-stage">
       <h1>
-        <span>제대로 하는 영상 파트너,</span>
-        <img src="logo/dotmov-white.png" width="1200" height="249" alt="DOTMOV">
+        <span class="tagline">제대로 하는 영상 파트너,</span>
+        <span class="logo-wrap" id="logo-reel">
+          <img src="logo/dotmov-white.png" width="1200" height="249" alt="DOTMOV">
+          <span class="logo-cuts" aria-hidden="true"></span>
+        </span>
       </h1>
     </div>
     <p class="hero-foot"><span>www.dot-mov.com</span><span>2023 —</span><span>Seoul, Korea</span></p>
@@ -701,6 +724,53 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
       requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
+  }
+  // 히어로 로고: 로고 글자를 창 삼아 작업 컷이 빠르게 지나간 뒤 흰 로고로 정착
+  var logo = document.getElementById('logo-reel');
+  var hero = document.querySelector('.hero');
+  if (logo && hero && !still) {
+    var cuts = logo.querySelector('.logo-cuts');
+    var shots = ['grading', 'beer-1', 'heat-4', 'koelsa-1', 'beer-2', 'heat-3', 'kbio-2', 'opera-2', 'hyundai-1', 'heat-1', 'ytn-2', 'beer-3'];
+    var beats = [300, 260, 230, 200, 180, 160, 150, 150, 160, 180, 220, 300];
+    var frames = [];
+    var ready = 0;
+    var playing = false;
+    shots.forEach(function (name) {
+      var el = document.createElement('i');
+      var im = new Image();
+      im.onload = function () { el.style.backgroundImage = 'url("img/' + name + '.jpg")'; el.dataset.ok = '1'; ready++; };
+      im.src = 'img/' + name + '.jpg';
+      cuts.appendChild(el);
+      frames.push(el);
+    });
+    var play = function () {
+      if (playing) return;
+      var list = frames.filter(function (f) { return f.dataset.ok; });
+      if (list.length < 4) return;
+      playing = true;
+      hero.classList.remove('just-landed');
+      hero.classList.add('is-reeling');
+      var i = 0;
+      var step = function () {
+        list.forEach(function (f) { f.classList.remove('on'); });
+        if (i >= list.length) {
+          hero.classList.remove('is-reeling');
+          hero.classList.add('just-landed');
+          playing = false;
+          return;
+        }
+        list[i].classList.add('on');
+        setTimeout(step, beats[i % beats.length]);
+        i++;
+      };
+      step();
+    };
+    var tries = 0;
+    var wait = setInterval(function () {
+      tries++;
+      if (ready >= shots.length || tries > 25) { clearInterval(wait); setTimeout(play, 350); }
+    }, 100);
+    logo.addEventListener('click', play);
   }
   document.querySelectorAll('.copy').forEach(function (btn) {
     btn.addEventListener('click', function () {
