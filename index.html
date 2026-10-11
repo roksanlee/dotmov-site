@@ -36,6 +36,7 @@
   --sheet-ink: #5c5c62;
   --scrim: rgba(0, 0, 0, 0.9);
   --guide: #4df58f;
+  --spring: cubic-bezier(.34, 1.56, .64, 1);
   --display: "Gothic A1", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   --body: "Pretendard", -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
   --mono: "Pretendard", -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
@@ -56,6 +57,9 @@
   color-scheme: dark;
 }
 
+@supports (animation-timing-function: linear(0, 1)) {
+  :root { --spring: linear(0, 0.009, 0.035 2.1%, 0.141 4.4%, 0.723 12.9%, 0.938 16.7%, 1.017, 1.077, 1.121, 1.149 24.3%, 1.159, 1.163, 1.161, 1.154 29.9%, 1.129 32.8%, 1.051 39.6%, 1.017 43.1%, 0.991, 0.977 51%, 0.974 53.8%, 0.975 57.1%, 0.997 69.8%, 1.003 76.9%, 1.004 83.8%, 1); }
+}
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
@@ -108,7 +112,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
     linear-gradient(180deg, rgba(0, 0, 0, .72), rgba(0, 0, 0, 0) 24%, rgba(0, 0, 0, 0) 60%, var(--slate) 100%);
 }
 .logo-box { position: relative; display: block; width: min(520px, 76vw); }
-.logo-wrap { position: relative; display: block; aspect-ratio: 1200 / 249; overflow: hidden; }
+.logo-wrap { position: relative; display: block; aspect-ratio: 1200 / 249; clip-path: inset(-60% -6% 0 -6%); }
 .logo-wrap img { width: 100%; height: 100%; }
 .logo-letters, .guides { display: none; }
 .fx .logo-letters { display: block; position: absolute; inset: 0; }
@@ -164,7 +168,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .fx.go .g-v { animation: draw-y 1s cubic-bezier(.87, 0, .13, 1) .16s both; }
 .fx.go .g-right { animation-delay: .24s; }
 .fx.go .g-ruler { animation: wipe-x 1.1s cubic-bezier(.87, 0, .13, 1) .3s both; }
-.fx.go .g-cross { animation: blink-in .35s steps(3, end) .55s both; }
+.fx.go .g-cross { animation: pop-in .6s var(--spring) .55s both; }
 .fx.go .g-label { animation: blink-in .3s steps(2, end) .4s both; }
 .fx.go .g-svg .box { animation: stroke-in .75s cubic-bezier(.87, 0, .13, 1) both; animation-delay: calc(.4s + var(--d) * 90ms); }
 .fx.go .g-svg .ring { animation: stroke-in 1.1s cubic-bezier(.87, 0, .13, 1) both; animation-delay: calc(.6s + var(--d) * 160ms); }
@@ -177,12 +181,15 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .fx.go .hud span { animation: blink-in .2s steps(2, end) both; animation-delay: calc(.25s + var(--d) * 110ms); }
 @media (max-width: 560px) { .g-svg text, .g-xy, .hud-b { display: none; } .hud-a { top: 54px; font-size: 10px; } }
 .fx.pre .logo-letters i { transform: translateY(106%); }
-.fx.pre .tagline, .fx.pre .hero-bar, .fx.pre .hero-foot { opacity: 0; }
+.tagline .ch { display: inline-block; white-space: pre; }
+.fx.pre .tagline .ch, .fx.pre .hero-bar, .fx.pre .hero-foot { opacity: 0; }
 .fx.pre .hero-stage::before, .fx.pre .hero-stage::after { opacity: 0; }
-.fx.go .logo-letters i { animation: letter-rise 1s cubic-bezier(.16, 1, .3, 1) both; animation-delay: calc(1s + var(--d) * 90ms); }
-.fx.go .tagline { animation: tag-in 2.6s cubic-bezier(.22, 1, .36, 1) 3.2s both; }
+.logo-letters i { transform-origin: calc((var(--l) + 100% - var(--r)) / 2) 89%; }
+.fx.go .logo-letters i { animation: letter-rise 1.15s linear both; animation-delay: calc(1s + var(--d) * 95ms); }
+.fx.go .tagline .ch { animation: ch-in .95s linear both; animation-delay: calc(3.15s + var(--i) * 42ms); }
 .fx.go .hero-reel { animation: fade-in 2.2s cubic-bezier(.76, 0, .24, 1) 2.9s both; }
-.fx.go .hero-bar, .fx.go .hero-foot { animation: fade-in 1.2s cubic-bezier(.16, 1, .3, 1) 3.5s both; }
+.fx.go .hero-bar { animation: drop-in 1s var(--spring) 3.7s both; }
+.fx.go .hero-foot { animation: lift-in 1s var(--spring) 3.8s both; }
 .fx.go .hero-stage::before, .fx.go .hero-stage::after { animation: fade-in-soft 1.2s cubic-bezier(.16, 1, .3, 1) 3.5s both; }
 @keyframes stroke-in { to { stroke-dashoffset: 0; } }
 @keyframes fade-in-half { from { opacity: 0; } to { opacity: .55; } }
@@ -190,13 +197,31 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 @keyframes scan-x { 0% { opacity: 1; transform: translateX(0); } 92% { opacity: 1; } 100% { opacity: 0; transform: translateX(1200px); } }
 @keyframes grid-flash { 0% { opacity: 0; } 18% { opacity: .11; } 80% { opacity: .11; } 100% { opacity: 0; } }
 @keyframes reel-zoom { from { transform: scale(1.12); } to { transform: scale(1); } }
-@keyframes letter-rise { from { transform: translateY(106%); } to { transform: none; } }
+@keyframes letter-rise {
+  0% { transform: translateY(112%) scale(.9, 1.28); animation-timing-function: cubic-bezier(.2, .9, .3, 1); }
+  38% { transform: translateY(-13%) scale(.95, 1.12); animation-timing-function: cubic-bezier(.5, 0, .7, .4); }
+  56% { transform: translateY(0) scale(1.09, .84); animation-timing-function: cubic-bezier(.2, .8, .4, 1); }
+  72% { transform: translateY(-3.5%) scale(.98, 1.05); animation-timing-function: ease-in-out; }
+  86% { transform: translateY(0) scale(1.02, .97); animation-timing-function: ease-out; }
+  100% { transform: none; }
+}
+@keyframes ch-in {
+  0% { opacity: 0; transform: translateY(1em) scale(.9, 1.35); animation-timing-function: cubic-bezier(.2, .9, .3, 1); }
+  30% { opacity: 1; }
+  45% { opacity: 1; transform: translateY(-.16em) scale(.97, 1.08); animation-timing-function: cubic-bezier(.5, 0, .7, .4); }
+  64% { transform: translateY(0) scale(1.08, .86); animation-timing-function: cubic-bezier(.2, .8, .4, 1); }
+  82% { transform: translateY(-.04em) scale(.99, 1.03); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes pop-in { 0% { opacity: 0; transform: scale(0) rotate(-45deg); } 100% { opacity: 1; transform: none; } }
+@keyframes drop-in { 0% { opacity: 0; transform: translateY(-14px); } 100% { opacity: 1; transform: none; } }
+@keyframes lift-in { 0% { opacity: 0; transform: translateY(14px); } 100% { opacity: 1; transform: none; } }
+@keyframes num-pop { 0% { transform: scale(1.12, .9); } 100% { transform: none; } }
 @keyframes draw-x { from { transform: scaleX(0); } to { transform: scaleX(1); } }
 @keyframes draw-y { from { transform: scaleY(0); } to { transform: scaleY(1); } }
 @keyframes wipe-x { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
 @keyframes blink-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes guides-out { from { opacity: 1; } to { opacity: 0; } }
-@keyframes tag-in { 0% { opacity: 0; letter-spacing: .3em; transform: translateY(6px); } 55% { opacity: .85; } 100% { opacity: 1; letter-spacing: -0.01em; transform: none; } }
 @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
 @keyframes fade-in-soft { from { opacity: 0; } to { opacity: .7; } }
 .hero-foot {
@@ -218,6 +243,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 
 /* 숫자 */
 .figures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px clamp(20px, 4vw, 56px); margin-top: clamp(48px, 7vw, 88px); }
+.figures dt.landed { animation: num-pop .7s var(--spring) both; transform-origin: 0 100%; }
 .figures dt {
   font-family: var(--display); font-weight: 900; letter-spacing: -0.05em; line-height: 0.95;
   font-size: clamp(54px, 10vw, 132px); font-variant-numeric: tabular-nums;
@@ -409,7 +435,22 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 (function () {
   // 모션을 쓸 수 있을 때만 시작 전 상태로 숨겨 둔다 (스크립트가 없으면 완성 화면 그대로)
   if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  document.querySelector('.hero').classList.add('fx', 'pre');
+  var hero = document.querySelector('.hero');
+  var tag = hero.querySelector('.tagline');
+  if (tag && !tag.firstElementChild) {
+    var text = tag.textContent;
+    tag.setAttribute('aria-label', text);
+    tag.textContent = '';
+    Array.from(text).forEach(function (c, i) {
+      var sp = document.createElement('span');
+      sp.className = 'ch';
+      sp.setAttribute('aria-hidden', 'true');
+      sp.style.setProperty('--i', i);
+      sp.textContent = c;
+      tag.appendChild(sp);
+    });
+  }
+  hero.classList.add('fx', 'pre');
 })();
 </script>
 
@@ -906,6 +947,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
         var e = k >= 1 ? 1 : 1 - Math.pow(2, -10 * k);
         el.textContent = Math.round(to * e);
         if (k < 1) requestAnimationFrame(tick);
+        else el.parentNode.classList.add('landed');
       };
       requestAnimationFrame(tick);
     };
